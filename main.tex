@@ -1,0 +1,39 @@
+\documentclass{report}
+
+
+% CÓDIGO ========================================================
+\usepackage{minted}
+\usepackage[svgnames]{xcolor}
+
+
+% DATOS =========================================================
+\title{Plantilla Notas}
+\author{Qx}
+\date{\today}
+
+
+
+
+\begin{document}
+  \maketitle
+
+
+  \chapter{Introducción}
+
+  Esta plantilla estará destinada a la creación de notas para diversos usos, por ejemplo para código o para matemáticas.
+
+  Tendrá todos los comando que normalmente usaría y estará descrito en varios paquetes que podrán ser usado en otros contextos.
+
+  \section{Código}
+  Para simplificar las notas de código, estaré usando el paquete \verb|{minted}|
+
+  \begin{minted}[bgcolor=Beige, bgcolorpadding=0.5em]{c}
+int main() {
+  printf("hello, world")
+  return 0;
+}
+  \end{minted}
+
+
+
+\end{document}
