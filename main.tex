@@ -1,9 +1,23 @@
-\documentclass{report}
+\documentclass{qx-files/qx-notes}
+
+
+% PÁGINA ========================================================
+\usepackage[style = mocha, styleAll]{catppuccinpalette}
+
 
 
 % CÓDIGO ========================================================
 \usepackage{minted}
-\usepackage[svgnames]{xcolor}
+  \setminted{
+    style = catppuccin-mocha
+  }
+
+
+
+% IDIOMA ========================================================
+\usepackage[spanish, mexico]{babel}
+
+
 
 
 % DATOS =========================================================
@@ -24,15 +38,13 @@
 
   Tendrá todos los comando que normalmente usaría y estará descrito en varios paquetes que podrán ser usado en otros contextos.
 
-  \section{Código}
-  Para simplificar las notas de código, estaré usando el paquete \verb|{minted}|
+  \section{Dependencias}
 
-  \begin{minted}[bgcolor=Beige, bgcolorpadding=0.5em]{c}
-int main() {
-  printf("hello, world")
-  return 0;
-}
-  \end{minted}
+  Este paquete usará tcolorbox con la librería de minted para la generación de los listings. Minted usa la herramienta externa de Pygments, por lo que en ciertas distribuciones es necesario activar la opción \verb|--shell-escape| y tener Python instalado con la librería Pygments.
+
+  También, para el color se usará la librería de catpuccin. Esta puede ser descargada mediante pip
+
+
 
 
 

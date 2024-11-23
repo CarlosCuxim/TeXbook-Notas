@@ -7,4 +7,5 @@ _minted/
 *.fls
 *.log
 *.pdf
+*.dvi
 *.synctex.gz
