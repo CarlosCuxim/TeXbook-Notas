@@ -1,23 +1,11 @@
 \documentclass{qx-files/qx-notes}
 
-
-% PÁGINA ========================================================
-\usepackage[style = mocha, styleAll]{catppuccinpalette}
-
-
-
-% CÓDIGO ========================================================
-\usepackage{minted}
-  \setminted{
-    style = catppuccin-mocha
-  }
+\usepackage{catppuccinpalette}
 
 
 
 % IDIOMA ========================================================
 \usepackage[spanish, mexico]{babel}
-
-
 
 
 % DATOS =========================================================
@@ -26,10 +14,22 @@
 \date{\today}
 
 
-
-
 \begin{document}
   \maketitle
+
+
+  \makeatletter
+  \texttt{\ifqx@pagecolor Verdadero\else falso\fi}
+
+  \texttt{|\meaning\qx@themeName|}
+
+  \expandafter\ifdefined\csname color@qx-text\endcsname
+    \texttt{\expandafter\meaning\csname \string\color@qx-text\endcsname}%
+  \else no defined\fi
+
+  l\ifblank{\qx@themeName}{empty}{\qx@themeName}l
+
+  \makeatother
 
 
   \chapter{Introducción}
@@ -37,6 +37,24 @@
   Esta plantilla estará destinada a la creación de notas para diversos usos, por ejemplo para código o para matemáticas.
 
   Tendrá todos los comando que normalmente usaría y estará descrito en varios paquetes que podrán ser usado en otros contextos.
+
+  \section{Clases y paquete}
+
+  La plantilla define multiples clases y paquetes. Esta sección describe todos los diversos documentos, los cuaes estarán guardados en la carpeta \verb|qx-files|.
+
+  \subsection{Clase qx-notes}
+
+  En primer lugar, tenemos la clase \verb|qx-notes|. Este puede ser accedido mediante
+  \begin{verbatim}
+    \documentclass{qx-files/qx-notes}
+  \end{verbatim}
+
+  Esta clase es la clase principal de la plantilla. Es donde estarán definidas todos los entornos y comandos que conciernen a el diseño de la plantilla. Por ejemplo la definición de las cajas o el listing.
+
+  Tiene alguns opciones, por ejemplo tenemos \verb|set-theme| el cual determina el tema y colores que serán usados por el documento. Se tienen los temas \verb|default|, \verb|dark| y \verb|monokai| y los definidos por el paquete \verb|catppuccin|.
+
+  La siguiente opción será \verb|page-size|, este define el comportamiento de la página. Tendrá las opciones \verb|letter|, \verb|a4| y \verb|a5| para tamaños de página comunes. Pero también incluye la opción \verb|phone| para un tamaño de página que sea facilmente visible en celulares.
+
 
   \section{Dependencias}
 
