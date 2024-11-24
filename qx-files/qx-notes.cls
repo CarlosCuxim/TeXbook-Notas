@@ -60,9 +60,9 @@
     paperwidth  = 3.5in,
     paperheight = 7.5in,
     margin      = 0.1in,
-  }{geometry}
+  }{geometry}%
 }{%
-  \PassOptionsToPackage{\qx@pageSize}{geometry}
+  \PassOptionsToPackage{\qx@pageSize}{geometry}%
 }
 
 \RequirePackage{geometry}
@@ -90,16 +90,23 @@
 % ===============================================================
 %
 % CLASS DECLARATIONS
-%
+%mobi
 % ===============================================================
 
+% MOBILE PAGE SIZE EMERGENCY STRETCH ---------------------------
+\ifthenelse{\equal{\qx@pageSize}{mobile}}{%
+  \emergencystretch=2in%
+  \hbadness=10000
+}{}
 
-% THEME DECLARATION ---------------------------------------------
+% THEME DECLARATION --------------------------------------------
 
 % THEME: default
 \newcommand*{\qx@theme@default}{%
   \colorlet{qx-page}{white}%
   \colorlet{qx-text}{black}%
+  \colorlet{qx-codebg}{white}%
+  \colorlet{qx-codeframe}{black}%
 }
 
 
@@ -107,6 +114,8 @@
 \newcommand*{\qx@theme@dark}{%
   \colorlet{qx-page}{black}%
   \colorlet{qx-text}{white}%
+  \colorlet{qx-codebg}{black}%
+  \colorlet{qx-codeframe}{white}%
 }
 
 
@@ -114,20 +123,22 @@
 \newcommand*{\qx@theme@monokai}{%
   \definecolor{qx-page}{HTML}{2e2e2e}%
   \definecolor{qx-text}{HTML}{d6d6d6}%
+  \definecolor{qx-codebg}{HTML}{2e2e2e}%
+  \definecolor{qx-codeframe}{HTML}{d6d6d6}%
 }
+
 
 \newcommand*{\qx@theme@catppuccin}{%
   \colorlet{qx-page}{CtpBase}%
   \colorlet{qx-text}{CtpText}%
+  \colorlet{qx-codebg}{CtpBase}
+  \colorlet{qx-codeframe}{CtpText}
 }
-
 
 \let\qx@theme@latte=\qx@theme@catppuccin
 \let\qx@theme@frappe=\qx@theme@catppuccin
 \let\qx@theme@macchiato=\qx@theme@catppuccin
 \let\qx@theme@mocha=\qx@theme@catppuccin
-
-
 
 
 
@@ -144,6 +155,46 @@
   \pagecolor{qx-page}
   \color{qx-text}
 \fi
+
+
+
+% LISTINGS BOXES -----------------------------------------------
+
+% Main languaje definition
+\newcommand*{\qx@mainLanguage}{latex}
+\newcommand*{\qxsetmainlanguage}[1]{%
+  \renewcommand*{\qx@mainLanguage}{#1}%
+}
+
+\tcbset{qx code block/.style={
+    coltext=qx-text,
+    colback=qx-codebg,
+    colframe=qx-codeframe
+  }
+}
+
+
+% Simple code block
+\NewTCBListing{codeblock}{ !D<>{\qx@mainLanguage} !O{} }{
+  qx code block,
+  listing only,
+  minted language=#1,
+  #2
+}
+
+
+% Simple code block for tex/latex code
+\newtcblisting{texcode}{
+  qx code block,
+  listing only,
+}
+
+
+% code block with latex rendering
+\newtcblisting{texexample}{
+  qx code block,
+  listing and text
+}
 
 
 \endinput

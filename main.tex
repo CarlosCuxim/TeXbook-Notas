@@ -1,4 +1,4 @@
-\documentclass[theme=mocha, pagecolor=true, pagesize=a5paper]{qx-files/qx-notes}
+\documentclass[theme=mocha, pagecolor=true, pagesize=mobile]{qx-files/qx-notes}
 
 
 
@@ -60,12 +60,43 @@
 
   \section{listings examples}
 
-  \begin{minted}{c}
-    int main() {
-      printf("hello, world");
-      return 0;
-    }
-  \end{minted}
+  La clase \verb|qx-notes| genera varios entornos para colorcar código.
+
+  En primer lugar tenemos el entorno \verb|{codeblock}| el cual nos permite crear una caja simple donde el codigo puesto dentro se va a renderizar con una fuente monoespaciada y con la sintaxis coloreada mediante el paquete \verb|{minted}|.
+
+  Tiene dos argumentos opcionales, el primero encerrado en los tokens \verb|<| y \verb|>| definirá el lenguaje del código. Si ningún valor se da, entonces se usará \verb|latex|. Esto puede ser cambiado con el siguiente comando
+  \begin{texcode}
+    \qxsetmainlanguage{<lang>}
+  \end{texcode}
+  
+  El segundo argumento opcional, encerrado en los clásicos corchetes, se podrá usar para colocar opciones adicionales al tcolorbox.
+
+  \begin{texexample}
+    \begin{codeblock}<c>[colframe=red]
+      int main() {
+        printf("hello, world");
+        return 0;
+      }
+      // Hola
+    \end{codeblock}
+  \end{texexample}
+
+  También se define los entornos \verb|texcode| y \verb|texexample|, la principal diferencia es que el primer incluye el rederizado del código, mientras que el segundo es solo el ćodigo.
+
+  \begin{codeblock}[listing and text]
+    \begin{texexample}
+      El teorema de pitágoras dice que
+      \[ a^2 + b^2 = c^2 \]
+    \end{texexample}
+  \end{codeblock}
+
+  \begin{texexample}
+    \begin{texcode}
+      Este ejemplo fue hecho con el entorno
+      \verb|{texcode}|
+    \end{texcode}
+  \end{texexample}
+
 
   \section{lipsum text}
 
