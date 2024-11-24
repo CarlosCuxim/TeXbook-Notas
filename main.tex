@@ -1,11 +1,10 @@
-\documentclass{qx-files/qx-notes}
-
-\usepackage{catppuccinpalette}
+\documentclass[theme=mocha, pagecolor=true, pagesize=a5paper]{qx-files/qx-notes}
 
 
 
 % IDIOMA ========================================================
 \usepackage[spanish, mexico]{babel}
+
 
 
 % DATOS =========================================================
@@ -14,33 +13,28 @@
 \date{\today}
 
 
+
+\usepackage{lipsum}
+
+
 \begin{document}
   \maketitle
 
 
-  \makeatletter
-  \texttt{\ifqx@pagecolor Verdadero\else falso\fi}
 
-  \texttt{|\meaning\qx@themeName|}
-
-  \expandafter\ifdefined\csname color@qx-text\endcsname
-    \texttt{\expandafter\meaning\csname \string\color@qx-text\endcsname}%
-  \else no defined\fi
-
-  l\ifblank{\qx@themeName}{empty}{\qx@themeName}l
-
-  \makeatother
-
-
-  \chapter{Introducción}
+  \section{Introducción}
 
   Esta plantilla estará destinada a la creación de notas para diversos usos, por ejemplo para código o para matemáticas.
 
   Tendrá todos los comando que normalmente usaría y estará descrito en varios paquetes que podrán ser usado en otros contextos.
 
+
+
   \section{Clases y paquete}
 
   La plantilla define multiples clases y paquetes. Esta sección describe todos los diversos documentos, los cuaes estarán guardados en la carpeta \verb|qx-files|.
+
+
 
   \subsection{Clase qx-notes}
 
@@ -53,7 +47,8 @@
 
   Tiene alguns opciones, por ejemplo tenemos \verb|set-theme| el cual determina el tema y colores que serán usados por el documento. Se tienen los temas \verb|default|, \verb|dark| y \verb|monokai| y los definidos por el paquete \verb|catppuccin|.
 
-  La siguiente opción será \verb|page-size|, este define el comportamiento de la página. Tendrá las opciones \verb|letter|, \verb|a4| y \verb|a5| para tamaños de página comunes. Pero también incluye la opción \verb|phone| para un tamaño de página que sea facilmente visible en celulares.
+  La siguiente opción será \verb|page-size|, este define el comportamiento de la página. Tendrá las opciones \verb|letterpaper|, \verb|a4paper| y \verb|a5paper| para tamaños de página comunes. Pero también incluye la opción \verb|mobile| para un tamaño de página que sea facilmente visible en celulares (probado en un poco phone x3).
+
 
 
   \section{Dependencias}
@@ -63,7 +58,17 @@
   También, para el color se usará la librería de catpuccin. Esta puede ser descargada mediante pip
 
 
+  \section{listings examples}
 
+  \begin{minted}{c}
+    int main() {
+      printf("hello, world");
+      return 0;
+    }
+  \end{minted}
 
+  \section{lipsum text}
+
+  \lipsum
 
 \end{document}

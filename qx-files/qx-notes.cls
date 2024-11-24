@@ -26,7 +26,9 @@
 \DeclareKeys[qx-notes]{
   theme.store = \qx@themeName,
   %
-  pagecolor.if = qx@pagecolor
+  pagecolor.if = qx@pagecolor,
+  %
+  pagesize.store = \qx@pageSize
 }
 
 \ProcessKeyOptions
@@ -41,7 +43,7 @@
 % ===============================================================
 
 % Base document class
-\LoadClass{report}
+\LoadClass{article}
 
 
 
@@ -50,6 +52,21 @@
 % PACKAGE LOADING
 %
 % ===============================================================
+
+
+% Page size control packages
+\ifthenelse{\equal{\qx@pageSize}{mobile}}{%
+  \PassOptionsToPackage{
+    paperwidth  = 3.5in,
+    paperheight = 7.5in,
+    margin      = 0.1in,
+  }{geometry}
+}{%
+  \PassOptionsToPackage{\qx@pageSize}{geometry}
+}
+
+\RequirePackage{geometry}
+
 
 % Charge of catpuccin package for color definitions
 \ifthenelse{%
@@ -60,6 +77,14 @@
 
 \RequirePackage{catppuccinpalette}
 
+
+% Box and lintings package
+
+\RequirePackage{tcolorbox}
+  \tcbuselibrary{minted}
+
+
+  \usemintedstyle{catppuccin-mocha}
 
 
 % ===============================================================
