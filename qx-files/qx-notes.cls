@@ -197,4 +197,23 @@
 }
 
 
+% LISTING INLINE COMMANDS --------------------------------------
+
+% Basic inline code
+\NewDocumentCommand\codeline{ D<>{\qx@mainLanguage} O{} }{%
+  \mintinline[#2]{#1}%
+}
+
+\newmintinline[texline]{latex}{}
+
+\newcommand*\texcs[1]{%
+  \expandafter\texline\expandafter{\string#1}%
+}
+
+\newcommand*\texenvname[1]{\Verb|{{#1}}|}
+
+\newcommand*\texpkgname[1]{\textsf{#1}}
+
+
+
 \endinput
