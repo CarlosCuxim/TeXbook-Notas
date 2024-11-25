@@ -1,9 +1,10 @@
-# Plantilla Notas
+# qx-files
 
-Esta plantilla es para la creación de notas de índoles relacionadas
-a la pogramación o matemáticas. Sin embargo también puede ser usado
-para otras cosas.
+En este repositorio colocaré el conjunto de clases y paquetes que
+uso en mi día a día. Su fin es una diversidad de cosas. Por
+ejemplo la creación de notas, libros, ejercicios, cheat sheets,
+etc.
 
-Está estructurado en una document class de LaTeX así como varios
-paquetes adicionales cuya funcionalidad será independiente al
-formato
+En primer archivo es el paquete `qx-notes` el cual sirve para la
+creación de las notas. Tiene entornos preparados para escribir
+código.
