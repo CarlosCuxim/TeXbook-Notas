@@ -21,6 +21,8 @@
 \newif\ifqx@pagecolor
 \qx@pagecolorfalse
 
+\newif\ifqx@stretchmode
+\qx@stretchmodefalse
 
 
 \DeclareKeys[qx-notes]{
@@ -28,10 +30,16 @@
   %
   pagecolor.if = qx@pagecolor,
   %
-  pagesize.store = \qx@pageSize
+  pagesize.store = \qx@pageSize,
+  %
+  stretchmode.if = qx@stretchmode
 }
 
 \ProcessKeyOptions
+
+
+\ifdefvoid{\qx@themeName}{\renewcommand*\qx@themeName{default}}{}
+\ifdefvoid{\qx@pageSize}{\renewcommand*\qx@pageSize{letterpaper}}{}
 
 
 
@@ -68,9 +76,11 @@
 \RequirePackage{geometry}
 
 
+
 % Charge of catpuccin package for color definitions
 \ifthenelse{%
-  \equal{\qx@themeName}{latte}\or\equal{\qx@themeName}{frappe}\or \equal{\qx@themeName}{macchiato}\or\equal{\qx@themeName}{mocha}%
+  \equal{\qx@themeName}{latte}\or\equal{\qx@themeName}{frappe}\or%
+  \equal{\qx@themeName}{macchiato}\or\equal{\qx@themeName}{mocha}%
 }{%
   \PassOptionsToPackage{style=\qx@themeName}{catppuccinpalette}%
 }{}
@@ -78,26 +88,41 @@
 \RequirePackage{catppuccinpalette}
 
 
-% Box and lintings package
 
+% Box and lintings package
 \RequirePackage{tcolorbox}
   \tcbuselibrary{minted}
 
+  \ifdefstring{\qx@themeName}{default}
+    {\usemintedstyle{default}}{}
+  \ifdefstring{\qx@themeName}{dark}
+    {\usemintedstyle{rrt}}{}
+  \ifdefstring{\qx@themeName}{monokai}
+    {\usemintedstyle{monokai}}{}
+  \ifdefstring{\qx@themeName}{latte}
+    {\usemintedstyle{catppuccin-latte}}{}
+  \ifdefstring{\qx@themeName}{frappe}
+    {\usemintedstyle{catppuccin-frappe}}{}
+  \ifdefstring{\qx@themeName}{macchiato}
+    {\usemintedstyle{catppuccin-macchiato}}{}
+  \ifdefstring{\qx@themeName}{mocha}
+    {\usemintedstyle{catppuccin-mocha}}{}
 
-  \usemintedstyle{catppuccin-mocha}
+
 
 
 % ===============================================================
 %
 % CLASS DECLARATIONS
-%mobi
+%
 % ===============================================================
 
-% MOBILE PAGE SIZE EMERGENCY STRETCH ---------------------------
-\ifthenelse{\equal{\qx@pageSize}{mobile}}{%
-  \emergencystretch=2in%
-  \hbadness=10000
-}{}
+% STRETCH MODE --------------------------------------------------
+\ifqx@stretchmode
+  \emergencystretch=1in%
+  \hbadness=5000
+\fi
+
 
 % THEME DECLARATION --------------------------------------------
 
@@ -144,12 +169,7 @@
 
 % COLOR THEME APLICATION ---------------------------------------
 
-\ifdefvoid{\qx@themeName}{%
-    \qx@theme@default
-}{% else
-    \csname qx@theme@\qx@themeName\endcsname
-}
-
+\csname qx@theme@\qx@themeName\endcsname
 
 \ifqx@pagecolor
   \pagecolor{qx-page}
