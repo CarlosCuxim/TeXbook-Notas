@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{qx-files/qx-notes}
+\ProvidesClass{qx-files/qx-notes}[2024-11-24 Qx package for notes creation]
 
 % ===============================================================
 %
