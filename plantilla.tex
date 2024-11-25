@@ -110,6 +110,12 @@
     \texenvname{minted} son parte del paquete \texpkgname{minted}.
   \end{texexample}
 
+  En el caso de estar escribiendo tutoriales, usualmente es necesario definir parámetros de entrada o botones. Para ello existen los comandos \texcs\inputparameter\ y \texcs\keybutton. 
+
+  \begin{texexample}
+    Una entrada podría ser \inputparameter{entrada} mientras que un botón podría ser \keybutton{botón}.
+  \end{texexample}
+
   \section{Dependencias}
 
   El entorno \texpkgname{qx-notas} usará \texpkgname{tcolorbox} con la librería de \texpkgname{minted} para la generación de los listings. \texpkgname{minted} usa la herramienta externa de Pygments, por lo que en ciertas distribuciones es necesario activar la opción \codeline{--shell-escape} y tener Python instalado con la librería Pygments.

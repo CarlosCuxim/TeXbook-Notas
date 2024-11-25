@@ -93,6 +93,10 @@
 \RequirePackage{tcolorbox}
   \tcbuselibrary{minted}
 
+  \usetikzlibrary{calc}
+  \usetikzlibrary{backgrounds}
+  \usetikzlibrary{arrows.meta}
+
   \ifdefstring{\qx@themeName}{default}
     {\usemintedstyle{default}}{}
   \ifdefstring{\qx@themeName}{dark}
@@ -224,6 +228,7 @@
   \mintinline[#2]{#1}%
 }
 
+% TeX auxiliar commands
 \newmintinline[texline]{latex}{}
 
 \newcommand*\texcs[1]{%
@@ -233,6 +238,31 @@
 \newcommand*\texenvname[1]{\Verb|{{#1}}|}
 
 \newcommand*\texpkgname[1]{\textsf{#1}}
+
+% Input parameter
+\newcommand*\inputparameter[1]{$\langle$\textit{#1}$\rangle$}
+
+% Key symbol
+\newcommand*\keybutton[1]{%
+  \begin{tikzpicture}[baseline=(B)]
+  \node[
+    inner ysep=1pt,
+    inner xsep=2.5pt,
+    font=\scriptsize\sffamily,
+    rounded corners=1pt,
+    fill=white,
+    text=black!80,
+    anchor=base,
+    top color=black!5,
+    bottom color=white
+  ] (key) at (0,0) {#1\vphantom{)}};
+  \begin{scope}[on background layer, rounded corners=1.25pt]
+    \fill[gray] ($(key.north west)+(-0.25pt,0.25pt)$)
+      rectangle ($(key.south east)+(1pt,-1pt)$);
+  \end{scope}
+  \coordinate (B) at ($(key.south)+(0,1.75pt)$);
+\end{tikzpicture}%
+}
 
 
 
