@@ -181,7 +181,7 @@
 % LISTINGS BOXES -----------------------------------------------
 
 % Main languaje definition
-\newcommand*{\qx@mainLanguage}{latex}
+\newcommand*{\qx@mainLanguage}{text}
 \newcommand*{\qxsetmainlanguage}[1]{%
   \renewcommand*{\qx@mainLanguage}{#1}%
 }
