@@ -10,3 +10,4 @@ _minted/
 *.dvi
 *.synctex.gz
 *.listing
+*.data.minted

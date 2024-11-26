@@ -1,0 +1,23 @@
+\section{Impresión de libros versus escritura ordinaria}
+
+Las computadoras tiene un conjunto limitado de caracteres (como
+ASCII), sin embargo, en la impresión existe mucho más; \TeX\
+permite solventar esas diferencias.
+
+Por ejemplo las computadoras solo tiene 3 tipos de comillas que
+son \codeline{`}, \codeline{'} y \codeline{"}, mientras que en
+los libros hay muchos mas. Para escribir las comillas en \TeX\ se
+usan las siguiente construcción:
+\begin{texexample}
+  ``I understand''
+\end{texexample}
+
+Los símbolos que se usan en el manual y para escribir código son los siguientes:
+\begin{codeblock}<text>
+  ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  abcdefghijklmnopqrstuvwxyz
+  0123456789"#%$&@*+-=,.:;?!
+  ()<>[]{}`'\|/_^~
+\end{codeblock}
+
+En el caso del espacio en blanco, lo denotaremos como \textvisiblespace
