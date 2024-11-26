@@ -5,8 +5,8 @@
 % IDIOMA ========================================================
 \usepackage[spanish, mexico]{babel}
 
-
-
+\usepackage{newtx}
+\usepackage[T1]{fontenc}
 
 
 % DATOS =========================================================
@@ -28,7 +28,7 @@
   \begin{abstract}
     El objetivo de esta plantilla es definir una serie de macros y herramientas con el objetivo de la creación de notas matemáticas o de programación de manera simple.
 
-    Incluye varias opciones para la customización de la apariencia.También, estará modularizado, por lo que si solo se requiere una porción de los comandos, basta con cargar el paquete que lo contenga únicamente.
+    Incluye varias opciones para la customización de la apariencia. También, estará modularizado, por lo que si solo se requiere una porción de los comandos, basta con cargar el paquete que lo contenga únicamente.
   \end{abstract}
 
 
@@ -48,7 +48,7 @@
 
   Esta clase es la principal de la plantilla. Es donde estarán definidas todos los entornos y comandos que conciernen a el diseño de esta. Por ejemplo la definición de las cajas o el listing.
 
-  Tiene alguns opciones, por ejemplo tenemos \codeline{theme} el cual determina el tema y colores que serán usados por el documento. Se tienen los temas \codeline{default}, \codeline{dark} y \codeline{monokai} y los definidos por el paquete \texpkgname{catppuccin}.
+  Tiene algunas opciones, por ejemplo tenemos \codeline{theme} el cual determina el tema y colores que serán usados por el documento. Se tienen los temas \codeline{default}, \codeline{dark} y \codeline{monokai} y los definidos por el paquete \texpkgname{catppuccin}.
 
   La siguiente opción será \codeline{pagesize}, este define el comportamiento de la página. Tendrá las opciones \codeline{letterpaper}, \codeline{a4paper} y \codeline{a5paper} para tamaños de página comunes. Pero también incluye la opción \codeline{mobile} para un tamaño de página que sea facilmente visible en celulares (probado en un poco phone x3).
 
