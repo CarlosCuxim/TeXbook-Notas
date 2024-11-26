@@ -89,9 +89,13 @@
 
 
 
-% Box and lintings package
+% Box and listings package
 \RequirePackage{tcolorbox}
   \tcbuselibrary{minted}
+
+  \usetikzlibrary{calc}
+  \usetikzlibrary{backgrounds}
+  \usetikzlibrary{arrows.meta}
 
   \ifdefstring{\qx@themeName}{default}
     {\usemintedstyle{default}}{}
@@ -131,7 +135,10 @@
   \colorlet{qx-page}{white}%
   \colorlet{qx-text}{black}%
   \colorlet{qx-codebg}{white}%
-  \colorlet{qx-codeframe}{black}%
+  \colorlet{qx-codeframe}{darkgray}%
+  \colorlet{qx-buttonbg}{black!5}%
+  \colorlet{qx-buttontext}{black!80}%
+  \colorlet{qx-buttonframe}{gray}%
 }
 
 
@@ -140,7 +147,10 @@
   \colorlet{qx-page}{black}%
   \colorlet{qx-text}{white}%
   \colorlet{qx-codebg}{black}%
-  \colorlet{qx-codeframe}{white}%
+  \colorlet{qx-codeframe}{gray}%
+  \colorlet{qx-buttonbg}{black!90}%
+  \colorlet{qx-buttontext}{white!75}%
+  \colorlet{qx-buttonframe}{darkgray}%
 }
 
 
@@ -150,6 +160,9 @@
   \definecolor{qx-text}{HTML}{d6d6d6}%
   \definecolor{qx-codebg}{HTML}{2e2e2e}%
   \definecolor{qx-codeframe}{HTML}{d6d6d6}%
+  \colorlet{qx-buttonbg}{qx-page!90}%
+  \colorlet{qx-buttontext}{qx-text!90!qx-page}%
+  \colorlet{qx-buttonframe}{qx-text!30!qx-page}%
 }
 
 
@@ -157,7 +170,10 @@
   \colorlet{qx-page}{CtpBase}%
   \colorlet{qx-text}{CtpText}%
   \colorlet{qx-codebg}{CtpBase}
-  \colorlet{qx-codeframe}{CtpText}
+  \colorlet{qx-codeframe}{CtpOverlay2}
+  \colorlet{qx-buttonbg}{CtpCrust}%
+  \colorlet{qx-buttontext}{CtpSubtext1}%
+  \colorlet{qx-buttonframe}{CtpOverlay0}%
 }
 
 \let\qx@theme@latte=\qx@theme@catppuccin
@@ -224,6 +240,7 @@
   \mintinline[#2]{#1}%
 }
 
+% TeX auxiliar commands
 \newmintinline[texline]{latex}{}
 
 \newcommand*\texcs[1]{%
@@ -233,6 +250,43 @@
 \newcommand*\texenvname[1]{\Verb|{{#1}}|}
 
 \newcommand*\texpkgname[1]{\textsf{#1}}
+
+% Input parameter
+\newcommand*\inputparameter[1]{$\langle$\textit{#1}$\rangle$}
+
+% Key symbol
+\newcommand*\qx@btn@txtsample{[j]}
+\newcommand*\qx@btn@txtbase{[]}
+
+\newcommand*\keybutton[1]{%
+  \begin{tikzpicture}[
+    button name/.style = {
+      font=\sffamily\scriptsize, text=qx-buttontext
+    },
+    no frame/.style = {inner sep=0pt},
+    button back/.style = {
+      button name, fill=qx-buttonframe, inner xsep=3pt,
+      inner ysep=2pt, rounded corners=1.5pt,
+      minimum width=1em+2pt
+    },
+    button front/.style = {
+      button name, inner xsep=2pt, inner ysep=1pt, 
+      rounded corners=1pt, xshift=-0.5pt, yshift=0.5pt,
+      top color=qx-buttonbg, bottom color=qx-page,
+      minimum width=1em
+    },
+    baseline = (box.base)
+]
+  % Nodo de alineación con el texto
+  \node[no frame] (box) {\vphantom{\qx@btn@txtsample}};
+  % Nodo de frame
+  \node[button back] {\hphantom{#1}\vphantom{\qx@btn@txtsample}};
+  % Nodo de la caja
+  \node[button front] (front) {\hphantom{#1}\vphantom{\qx@btn@txtsample}};
+  % Nodo del texto
+  \node[button name, no frame] at (front) {#1\vphantom{\qx@btn@txtbase}};
+\end{tikzpicture}%
+}
 
 
 
