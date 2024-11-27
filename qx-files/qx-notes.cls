@@ -211,48 +211,66 @@
 
 
 % Simple code block
-\NewTCBListing{codeblock}{ !D<>{\qx@mainLanguage} !O{} }{
+\NewTCBListing{codeblock}{ !O{\qx@mainLanguage} !O{} !D<>{} }{
   qx code block,
   listing only,
   minted language=#1,
-  #2
+  #2,
+  minted options={
+    tabsize=2, fontsize=\small, breaklines, autogobble, #3
+  }
 }
 
 
 % Simple code block for tex/latex code
-\newtcblisting{texcode}{
+\NewTCBListing{texcode}{ !O{} !D<>{} }{
   qx code block,
   listing only,
+  #1,
+  minted options={
+    tabsize=2, fontsize=\small, breaklines, autogobble, #2
+  }
 }
 
 
 % code block with latex rendering
-\newtcblisting{texexample}{
+\NewTCBListing{texexample}{ !O{} !D<>{} }{
   qx code block,
-  listing and text
+  listing and text,
+  #1,
+  minted options={
+    tabsize=2, fontsize=\small, breaklines, autogobble, #2
+  }
 }
 
 
 % LISTING INLINE COMMANDS --------------------------------------
 
 % Basic inline code
-\NewDocumentCommand\codeline{ D<>{\qx@mainLanguage} O{} }{%
+\NewDocumentCommand\codeline{ !O{\qx@mainLanguage} !D<>{} }{%
   \mintinline[#2]{#1}%
 }
 
 % TeX auxiliar commands
-\newmintinline[texline]{latex}{}
+\NewDocumentCommand\texline{ D<>{} }{%
+  \mintinline[#1]{latex}%
+}
 
+% Chante a command to string with highlight
 \newcommand*\texcs[1]{%
   \expandafter\texline\expandafter{\string#1}%
 }
 
+% Change a string to represent a package
 \newcommand*\texenvname[1]{\Verb|{{#1}}|}
 
+% Set the formar for package naming
 \newcommand*\texpkgname[1]{\textsf{#1}}
 
 % Input parameter
-\newcommand*\inputparameter[1]{$\langle$\textit{#1}$\rangle$}
+\newcommand*\inputparameter[1]{%
+  $\langle$\normalfont{\textit{#1}}$\rangle$%
+}
 
 % Key symbol
 \newcommand*\qx@btn@txtsample{[j]}
@@ -272,8 +290,7 @@
     button front/.style = {
       button name, inner xsep=2pt, inner ysep=1pt, 
       rounded corners=1pt, xshift=-0.5pt, yshift=0.5pt,
-      top color=qx-buttonbg, bottom color=qx-page,
-      minimum width=1em
+      fill=qx-buttonbg, minimum width=1em
     },
     baseline = (box.base)
 ]
