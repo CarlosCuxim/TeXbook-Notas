@@ -273,7 +273,7 @@
 }
 
 \newcommand*\inputkey[1]{%
-  $\langle$\normalfont{#1}$\rangle%
+  $\langle$\normalfont{#1}$\rangle$%
 }
 
 
