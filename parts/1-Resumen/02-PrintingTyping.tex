@@ -4,17 +4,28 @@ Las computadoras tiene un conjunto limitado de caracteres (como
 ASCII), sin embargo, en la impresión existe mucho más; \TeX\
 permite solventar esas diferencias.
 
-Por ejemplo las computadoras solo tiene 3 tipos de comillas que
+Por ejemplo, las computadoras solo tiene 3 tipos de comillas que
 son \codeline{`}, \codeline{'} y \codeline{"}, mientras que en
 los libros hay muchos mas. Para escribir las comillas en \TeX\ se
-usan las siguiente construcción:
+usa las siguiente construcción:
 \begin{texexample}
   ``I understand''
 \end{texexample}
+Otro ejemplo son los símbolos de tipo guión. Existen 4 tipos y su uso varía dependiendo de las reglas ortográficas.
+\begin{texexample}
+  El guión se usa para palabras compuestas como físico-químico.
+  El en-dash se usa rangos de números como 10--20.
+  El em-dash se usa para énfasis de oraciones o diálogos ---como este---.
+  Finalmente tenemos el signo de menos $a - b$.
+\end{texexample}
+
+Otra característica importante de \TeX\ son las ligaturas que son símbolos especiales asociados a ciertas combinaciones de letras o símbolos. Por ejemplo tenemos `ff', `fi', `fl', `ffi' y `ffl'. Estos están codificados en la fuente y no hay necesidad de hacer algo especial.
+
+Otra característica de la fuente, llamada \emph{kerning}, es que el espaciado entre letras no es fijo, sino que se adapta para que sea lo más legible posible, como por ejemplo la combinación `AV'
 
 Los símbolos que se usan en el manual y para escribir código son
 los siguientes:
-\begin{codeblock}
+\begin{codeblock}[text]
   ABCDEFGHIJKLMNOPQRSTUVWXYZ
   abcdefghijklmnopqrstuvwxyz
   0123456789"#$%&@*+-=,.:;?!
@@ -22,4 +33,12 @@ los siguientes:
 \end{codeblock}
 En el caso del espacio en blanco, lo denotaremos como \keybutton{space} o usando el símbolo \textvisiblespace.
 
-Otro ejemplo son los símbolos de tipo guión. El guión simple - se escribe como \codeline{-}, el en-dash -- como \codeline{--}, el em-dash como \codeline{---} y el signo de menos $-$ como \codeline{$-$}.
+En el caso que no se tengan algunos símbolos, es posible reemplazarlo por comandos. Por ejemplo para las comillas podemos usar los comando \texcs\lq\ y \texcs\rq.
+\begin{texexample}
+  \lq\lq Texto entre comillas \rq\rq
+\end{texexample}
+
+Por las mismas características de \TeX, algunas construcciones necesitan consideraciones extra. Por ejemplo, para colocar una comilla doble y una simple al mismo tiempo es necesario usar el comando \texcs\thinspace.
+\begin{texexample}
+  ``\thinspace` Texto entre dobles comillas'\thinspace''
+\end{texexample}

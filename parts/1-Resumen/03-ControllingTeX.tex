@@ -1,0 +1,31 @@
+\section{Controlando \TeX}
+
+Para usar \TeX\ haremos uso de las \emph{secuencias de control} (simplemente comandos). Estas son instrucciones que se podrán usar mediante un carácter especial llamado \emph{carácter de escape}, el cual usualmente será \codeline{\ }.
+
+La sintaxis de una secuencia de control usualmente será \inputparameter{esc char}\inputparameter{cs name}, donde \inputparameter{esc char} es el carácter de escape y \inputparameter{cs name} es una sucesión de letras o un carácter no letra.
+
+Por ejemplo consideremos el comando \texcs\input\ el cual permite leer un archivo. De este modo si quisiéramos cargar un archivo llamado \codeline{MS.tex} solo tendríamos que escribir lo siguiente
+\begin{texcode}
+  \input MS
+\end{texcode}
+
+Otro ejemplo de secuencias de control son los comandos \codeline{\'} y \codeline{\"} que permiten agregar acentos y a las letras.
+\begin{texexample}
+  George P\'olya y Gabor Szeg\"o
+\end{texexample}
+
+Cuando el comando es del primer tipo, es decir cuando \inputparameter{cs name} es una sucesión de letras, entonces será llamada una \emph{palabra de control}. El comando empieza con la primera letra y termina justo antes del primer carácter que no sea una letra. Los espacios después de una palabra de control serán ignorados.
+
+Sin embargo, cuando el comando es del segundo tipo, cuando \inputparameter{cs name} es un carácter que no es letra, será llamado un \emph{símbolo de control}. Los símbolos de control siempre tienen una carácter de longitud (sin contar al carácter de escape). Los espacios después de un símbolo de control nunca serán ignorados.
+
+Si se desea un espacio después de una palabra de control se deberá usar el comando \texline<escapeinside=||, showspaces>{\| |}. No importa la cantidad de espacios después del comando, ya que espacios consecutivos son tratados como un solo espacio.
+
+Por ejemplo, el comando \texcs\TeX\ es usado para imprimir el logo de \TeX, para usarlo debemos hacer lo siguiente
+\begin{texexample}
+  \TeX ignore spaces after control words.
+  \TeX\ ignore spaces after control words.
+\end{texexample}
+
+Si se desean más de un espacio consecutivo se debe usar \texline<escapeinside=||, showspaces>{\| |} múltiples veces. Por ejemplo, espacios consecutivos se deberá escribir como \texline<showspaces, escapeinside=||>{\ \ \| |}.
+
+Oros caracteres de tipo espacio como \inputparameter{return} o \inputparameter{tab} (que denotaremos usando los símbolos \keybutton{Return} o \keybutton{Tab}
