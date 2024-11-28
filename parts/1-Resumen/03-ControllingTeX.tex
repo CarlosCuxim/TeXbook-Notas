@@ -1,6 +1,6 @@
 \section{Controlando \TeX}
 
-Para usar \TeX\ haremos uso de las \emph{secuencias de control} (simplemente comandos). Estas son instrucciones que se podrán usar mediante un carácter especial llamado \emph{carácter de escape}, el cual usualmente será \codeline{\ }.
+Para usar \TeX\ haremos uso de las \emph{secuencias de control} ( o simplemente comandos). Estas son instrucciones que se podrán usar mediante un carácter especial llamado \emph{carácter de escape}, el cual usualmente será \codeline{\ }.
 
 La sintaxis de una secuencia de control usualmente será \inputparameter{esc char}\inputparameter{cs name}, donde \inputparameter{esc char} es el carácter de escape y \inputparameter{cs name} es una sucesión de letras o un carácter no letra.
 
@@ -28,4 +28,6 @@ Por ejemplo, el comando \texcs\TeX\ es usado para imprimir el logo de \TeX, para
 
 Si se desean más de un espacio consecutivo se debe usar \texline<escapeinside=||, showspaces>{\| |} múltiples veces. Por ejemplo, espacios consecutivos se deberá escribir como \texline<showspaces, escapeinside=||>{\ \ \| |}.
 
-Oros caracteres de tipo espacio como \inputparameter{return} o \inputparameter{tab} (que denotaremos usando los símbolos \keybutton{Return} o \keybutton{Tab}
+Oros caracteres de tipo espacio como \inputkey{return} o \inputkey{tab} también pueden generar caracteres de escape. Estos comandos, \texline{\ }\inputkey{return} y \texline{\ }\inputkey{tab}, usualmente tendrán el mismo significado que \texline<escapeinside=||, showspaces>{\| |}.
+
+
