@@ -272,6 +272,11 @@
   $\langle$\normalfont{\textit{#1}}$\rangle$%
 }
 
+\newcommand*\inputkey[1]{%
+  $\langle$\normalfont{#1}$\rangle%
+}
+
+
 % Key symbol
 \newcommand*\qx@btn@txtsample{[j]}
 \newcommand*\qx@btn@txtbase{[]}
@@ -282,28 +287,23 @@
       font=\sffamily\scriptsize, text=qx-buttontext
     },
     no frame/.style = {inner sep=0pt},
-    button back/.style = {
-      button name, fill=qx-buttonframe, inner xsep=3pt,
-      inner ysep=2pt, rounded corners=1.5pt,
-      minimum width=1em+2pt
-    },
-    button front/.style = {
-      button name, inner xsep=2pt, inner ysep=1pt, 
-      rounded corners=1pt, xshift=-0.5pt, yshift=0.5pt,
-      fill=qx-buttonbg, minimum width=1em
+    button/.style = {
+      button name, inner xsep=2.5pt, inner ysep=1.5pt, 
+      rounded corners=1pt,
+      fill=qx-buttonbg, minimum width=1em,
+      draw=qx-buttonframe
     },
     baseline = (box.base)
 ]
   % Nodo de alineación con el texto
   \node[no frame] (box) {\vphantom{\qx@btn@txtsample}};
-  % Nodo de frame
-  \node[button back] {\hphantom{#1}\vphantom{\qx@btn@txtsample}};
   % Nodo de la caja
-  \node[button front] (front) {\hphantom{#1}\vphantom{\qx@btn@txtsample}};
+  \node[button] (front) {\hphantom{#1}\vphantom{\qx@btn@txtsample}};
   % Nodo del texto
   \node[button name, no frame] at (front) {#1\vphantom{\qx@btn@txtbase}};
 \end{tikzpicture}%
 }
+
 
 
 
