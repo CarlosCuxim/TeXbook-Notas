@@ -53,7 +53,7 @@
   La siguiente opción será \codeline{pagesize}, este define el comportamiento de la página. Tendrá las opciones \codeline{letterpaper}, \codeline{a4paper} y \codeline{a5paper} para tamaños de página comunes. Pero también incluye la opción \codeline{mobile} para un tamaño de página que sea fácilmente visible en celulares (probado en un poco phone x3).
 
 
-  \section{listings examples}
+  \subsection{Ejemplos listing}
 
   La clase \texpkgname{qx-notes} genera varios entornos para colocar código.
 
@@ -122,6 +122,18 @@
   \begin{texexample}
     Una entrada podría ser \inputparameter{entrada}
     mientras que un botón podría ser \keybutton{botón}.
+  \end{texexample}
+
+  \subsection{Cajas extra}
+
+  La clase \texpkgname{qx-notes} define una serie de cajas tcolorbox extra para escribir notas. 
+
+  Primero, tenemos el entorno \texenvname{note} el cual define una caja para notas extra. Tiene un argumento opcional para cambiar el título, en el caso que no se indique el título será simplemente ``Nota''.
+
+  \begin{texexample}
+    \begin{notebox}[Nota extra]
+      Ejemplo de nota
+    \end{notebox}
   \end{texexample}
 
   \section{Dependencias}
