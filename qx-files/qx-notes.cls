@@ -1,22 +1,22 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{qx-files/qx-notes}[2024-11-24 Qx package for notes creation]
 
-% ===============================================================
+% ==============================================================================
 %
-% PRELIMINARY DECLARATIONS ======================================
+% PRELIMINARY DECLARATIONS =====================================================
 %
-% ===============================================================
+% ==============================================================================
 
 
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen}
 
 
-% ==============================================================
+% ==============================================================================
 %
 % OPTIONS DECLARATION
 %
-% ==============================================================
+% ==============================================================================
 
 \newif\ifqx@pagecolor
 \qx@pagecolorfalse
@@ -44,22 +44,22 @@
 
 
 
-% ===============================================================
+% ==============================================================================
 %
 % BASE CLASS LOAD
 %
-% ===============================================================
+% ==============================================================================
 
 % Base document class
 \LoadClass{article}
 
 
 
-% ===============================================================
+% ==============================================================================
 %
 % PACKAGE LOADING
 %
-% ===============================================================
+% ==============================================================================
 
 
 % Page size control packages
@@ -92,6 +92,7 @@
 % Box and listings package
 \RequirePackage{tcolorbox}
   \tcbuselibrary{minted}
+  \tcbuselibrary{skins}
 
   \usetikzlibrary{calc}
   \usetikzlibrary{backgrounds}
@@ -115,20 +116,20 @@
 
 
 
-% ===============================================================
+% ==============================================================================
 %
 % CLASS DECLARATIONS
 %
-% ===============================================================
+% ==============================================================================
 
-% STRETCH MODE --------------------------------------------------
+% Stretch Mode -----------------------------------------------------------------
 \ifqx@stretchmode
   \emergencystretch=1in%
   \hbadness=5000
 \fi
 
 
-% THEME DECLARATION --------------------------------------------
+% Theme Declaration ------------------------------------------------------------
 
 % THEME: default
 \newcommand*{\qx@theme@default}{%
@@ -139,6 +140,7 @@
   \colorlet{qx-buttonbg}{black!5}%
   \colorlet{qx-buttontext}{black!80}%
   \colorlet{qx-buttonframe}{gray}%
+  \colorlet{qx-note}{blue}%
 }
 
 
@@ -151,6 +153,7 @@
   \colorlet{qx-buttonbg}{black!90}%
   \colorlet{qx-buttontext}{white!75}%
   \colorlet{qx-buttonframe}{darkgray}%
+  \colorlet{qx-note}{blue}%
 }
 
 
@@ -158,11 +161,12 @@
 \newcommand*{\qx@theme@monokai}{%
   \definecolor{qx-page}{HTML}{2e2e2e}%
   \definecolor{qx-text}{HTML}{d6d6d6}%
-  \definecolor{qx-codebg}{HTML}{2e2e2e}%
-  \definecolor{qx-codeframe}{HTML}{d6d6d6}%
+  \colorlet{qx-codebg}{qx-page}
+  \colorlet{qx-codeframe}{qx-text}
   \colorlet{qx-buttonbg}{qx-page!90}%
   \colorlet{qx-buttontext}{qx-text!90!qx-page}%
   \colorlet{qx-buttonframe}{qx-text!30!qx-page}%
+  \definecolor{qx-note}{HTML}{6c99bb}%
 }
 
 
@@ -174,7 +178,9 @@
   \colorlet{qx-buttonbg}{CtpCrust}%
   \colorlet{qx-buttontext}{CtpSubtext1}%
   \colorlet{qx-buttonframe}{CtpOverlay0}%
+  \colorlet{qx-note}{CtpBlue}
 }
+
 
 \let\qx@theme@latte=\qx@theme@catppuccin
 \let\qx@theme@frappe=\qx@theme@catppuccin
@@ -183,7 +189,7 @@
 
 
 
-% COLOR THEME APLICATION ---------------------------------------
+% Color Theme Aplication -------------------------------------------------------
 
 \csname qx@theme@\qx@themeName\endcsname
 
@@ -194,7 +200,7 @@
 
 
 
-% LISTINGS BOXES -----------------------------------------------
+% Listings Boxes ---------------------------------------------------------------
 
 % Main languaje definition
 \newcommand*{\qx@mainLanguage}{text}
@@ -205,7 +211,8 @@
 \tcbset{qx code block/.style={
     coltext=qx-text,
     colback=qx-codebg,
-    colframe=qx-codeframe
+    colframe=qx-codeframe,
+    left=2mm, right=2mm,
   }
 }
 
@@ -244,7 +251,8 @@
 }
 
 
-% LISTING INLINE COMMANDS --------------------------------------
+
+% Listing Inline Commands ------------------------------------------------------
 
 % Basic inline code
 \NewDocumentCommand\codeline{ !O{\qx@mainLanguage} !D<>{} }{%
@@ -306,5 +314,22 @@
 
 
 
+% New Tcolorbox Definitions ----------------------------------------------------
+
+\colorlet{qx-note-title}{qx-note!50!qx-text}
+\colorlet{qx-note-bg}{qx-note!15!qx-page}
+
+\NewTColorBox{notebox}{ !O{Nota} }{
+  title = #1.,
+  coltitle = qx-note-title,
+  fonttitle = \sffamily\bfseries,
+  colbacktitle = qx-note-bg,
+  coltext = qx-text,
+  colback = qx-note-bg,
+  fontupper = \sffamily,
+  colframe = qx-note-bg,
+  boxrule=0pt, boxsep=1mm, left=1mm, top=1mm, bottom=1mm, right=1mm,
+  bottomtitle=0mm, toptitle=1mm
+}
 
 \endinput
