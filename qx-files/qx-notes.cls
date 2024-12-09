@@ -125,7 +125,7 @@
 % Stretch Mode -----------------------------------------------------------------
 \ifqx@stretchmode
   \emergencystretch=1in%
-  \hbadness=5000
+  \hbadness=10000
 \fi
 
 
