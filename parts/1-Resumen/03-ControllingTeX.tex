@@ -30,4 +30,22 @@ Si se desean más de un espacio consecutivo se debe usar \texline<escapeinside=|
 
 Oros caracteres de tipo espacio como \inputkey{return} o \inputkey{tab} también pueden generar caracteres de escape. Estos comandos, \texline{\ }\inputkey{return} y \texline{\ }\inputkey{tab}, usualmente tendrán el mismo significado que \texline<escapeinside=||, showspaces>{\| |}.
 
+Otros ejemplos de comandos son los usados para los símbolos en formulas matemáticas, sin embargo, para usarlos estos deben estar entre uno o dos caracteres \mintinline{latex}{$}.
+
+\begin{texexample}
+  $\pi$, $\Pi$, $\aleph$, $\infty$, $\le$, $\ge$,
+  $\ne$, $\oplus$, $\otimes$.
+\end{texexample}
+
+Todos los comandos son \emph{case sensitive}, es decir, que no hay relación entre comandos definido por la misma palabra pero cambiando algunas mayúsculas o minúsculas.
+
+\TeX\ tiene internamente cerca de 900 comandos listos para ser usados. Pero existen formas de definir mas. De estos comandos, cerca de 300 son llamada \emph{primitivas}, dado que son comandos internos del propio programa y no se descomponen en comandos más simples.
+
+Se pueden distinguir las primitivas y los comandos compuestos usando el comando \texcs\show\ seguido del comando. Por ejemplo, \texline{\show\thinspace} hace que en la consola y el log se muestre el siguiente texto:
+\begin{texcode}
+  > \thinspace=macro
+  ->\kern .16667em .
+\end{texcode}
+
+Llamaremos como ``plain \TeX'' al conjunto de casi 600 comandos ya integrados dentro del programa más los casi 300 comandos primitivos.
 

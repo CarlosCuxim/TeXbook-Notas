@@ -1,0 +1,56 @@
+\section{Fuentes tipográficas}
+
+\TeX\ cuenta con múltiples tipos de fuentes y comandos para cambiar estos. 
+Cada fuente cuenta con su propio comando para cambiarlo, algunas de estos comandos se muestran en el siguiente ejemplo.
+
+\begin{texexample}
+  \rm roman typeface.
+  \sl slanted romand typeface.
+  \it italic style.
+  \tt typewriter-like face.
+  \bf boldface style.
+\end{texexample}
+
+Estos comandos cambian la fuente para el resto del documento, sim embargo se puede limitar a una parte mediante el uso de las llaves \texline|{}|.
+
+\begin{texexample}
+  to be {\bf bold} or {\sl emphasize} something
+\end{texexample}
+
+En el caso de las fuentes slanted e italic, por la forma de las letras, es posible que la última letra abarque parte del siguiente espacio. Para corregir esto se puede usar el comando \texcs\/ el cual agrega un espacio especial llamado \emph{correción itálica}.
+
+\begin{texexample}
+  {\it italic\/} and {\sl slanted\/} words.
+\end{texexample}
+
+La regla de oro es usar \texcs\/ justo cuando se cambia de italic o slanted a roman, excepto cuando el siguiente carácter se un punto o coma.
+
+\begin{texexample}
+  {\it italic\/} for {\it emphasis}.
+\end{texexample}
+
+La puntuación no debe ser incluida en el cambio de fuente. En el caso de los signos de dos puntos `:' o el punto y coma `;' si se recomienda agregar la corrección itálica \texline|{\it word\/};|.
+
+Todas las letras en todas las fuentes tienen una correción itálica. En fuentes no inclinadas usualmente es de cero, sin embargo existe excepciones. Una de estas excepciones son las negritas, dado que si queremos colocar la letra f negrita entre comillas, se debe hacer como \texline|`{\bf f\/}'|.
+
+Otra fuente presente en \TeX\ es la primitiva \texcs\nullfont, este define una fuente vacía y está siempre presente en el caso que no se haya especificado otra.
+
+\TeX\ también puede manejar fuentes de distintos tamaños. Por defecto se usa una fuente de 10pt llamada \texcs\tenrm, pero se puede usar otros tamaños usando los comandos \texcs\ninerm, \texcs\eightrm, \texcs\sevenrm, \texcs\sixrm\ y \texcs\fiverm, los cuales cambia a la fuente roman de tamaños 9pt a 5pt, respectivamente. Existen comandos similares para otros estilos, como \texcs\tensl, \texcs\ninesl, etc. En el caso que en una misma fila se use fuentes de distinto tamaño, estas se alinearan mediante su linea base (baseline).
+
+{
+\font\tenrm=cmr10  \font\ninerm=cmr9  \font\eightrm=cmr8
+\font\sevenrm=cmr7  \font\sixrm=cmr6  \font\fiverm=cmr5
+\begin{texexample}
+  \tenrm smaller \ninerm and smaller
+  \eightrm and smaller \sevenrm and smaller
+  \sixrm and smaller \fiverm and smaller
+\end{texexample}
+}
+
+\begin{tcolorbox}[title=Nota]
+  En plain \TeX\ en realidad solo están definidos por defecto los comandos para los tamaños 10pt, 7pt y 5pt, el resto de tamaños únicamente están precargados, por lo que para usarse se tienen que definir explícitamente mediante el comando \texcs\font.
+\end{tcolorbox}
+
+
+En plain \TeX\ no hay diferencia notable entre \texcs\rm\ y \texcs\tenrm, sin embargo, \texcs\rm\ puede ser reescrito para que cambie la forma más no el tamaño de la fuente.
+
