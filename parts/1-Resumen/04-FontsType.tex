@@ -54,3 +54,50 @@ Otra fuente presente en \TeX\ es la primitiva \texcs\nullfont, este define una f
 
 En plain \TeX\ no hay diferencia notable entre \texcs\rm\ y \texcs\tenrm, sin embargo, \texcs\rm\ puede ser reescrito para que cambie la forma más no el tamaño de la fuente.
 
+En \TeX\ se puede cargar cualquier fuente siempre que existan los archivos y se tenga su nombre clave. Si estos requisitos se cumple, se puede usar el comando \texcs\font\ para cargar y asignar un comando a esa fuente. La sintaxis es la siguiente
+
+\begin{texcode}<escapeinside=||>
+  \font|\inputparameter{control sequence}|=|\inputparameter{font name}|
+\end{texcode}
+
+Por ejemplo el comando \texcs\ninerm\ está definida de la siguiente manera.
+\begin{texcode}
+  \font\ninerm=cmr9
+\end{texcode}
+
+En el ejemplo anterior, \texline{cmr9} es el nombre clave para la fuente ``Computer Modern Roman de 9pts''.
+
+\begin{notebox}
+  Las fuentes que se pueden usar en plain \TeX\ son de un formato especial. Se crean usando su programa hermano METAFONT.
+
+  Si se requiere usar fuentes modernas, se debe hacer uso de otros ``engines'' de \TeX\ como \XeTeX\ o \LuaTeX.
+\end{notebox}
+
+El comando \texcs\font\ también permite cambiar el tamaño de la fuente cargada mediante la palabra clave \texline{at}. La sintaxis es la siguiente.
+\begin{texcode}<escapeinside=||>
+  \font|\inputparameter{control sequence}|=|\inputparameter{font name}|at|\inputparameter{size}|
+\end{texcode}
+
+Por ejemplo para cargar la fuente ``Computer Modern Roman de 5pt'' y estirarla para que su tamaño final sea de 10pt se puede usar el siguiente comando.
+\begin{texcode}
+  \font\magnifiedfiverm=cmr5 at 10pt
+\end{texcode}
+
+Otra forma de modificar el tamaño de una fuente es mediante la palabra clave \texline{scaled} que sirve para escalar una fuente. La diferencia con \texline{at} es que en vez de \inputparameter{size} se deben especificar un factor de escalado que representa la escala multiplicada por 1000.
+
+Por ejemplo, para cargar la fuente ``Computer Modern Roman de 5pt'' al doble de su tamaño se puede usar el siguiente comando.
+\begin{texcode}
+  \font\magnifiedfiverm=cmr5 scaled 2000
+\end{texcode}
+
+Por motivos históricos, \TeX\ proporciona algunos comandos que sirven como abreviaciones para escalas fijas:
+\begin{itemize}
+  \item \texcs\magstephalf\ para una escala de $\sqrt{1.2}$.
+
+  \item \texcs\magstep\inputparameter{$n = 1,\ldots,5$} para una escala de $1.2^n$
+\end{itemize}
+
+Por ejemplo para cargar la fuente ``Computer Modern Roman de 10pt'' escalado en un factor de $1.2^2 = 1.44$ se usa el siguiente comando.
+\begin{texcode}
+  \font\bigtenrm=cmr10 scaled\magstep2
+\end{texcode}
