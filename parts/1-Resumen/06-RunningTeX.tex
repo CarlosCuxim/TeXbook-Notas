@@ -1,0 +1,43 @@
+\section{Corriendo \TeX}
+
+Para correr \TeX\ basta con correr el comando \codeline{tex} en la consola de comandos. Esto mostrará algo similar al similar al siguiente texto.
+\begin{codeblock}
+  This is TeX, Version 3.141 (preloaded format=plain 89.7.15)
+  **
+\end{codeblock}
+
+En este estado se puede introducir el nombre de un archivo \codeline{.tex} para que sea ejecutado o una secuencia de control.
+
+El programa no finalizará hasta que se ejecute el comando \texcs\end. Después de esta primera acción, el programa cambiará al modo de entrada con un solo asterisco, en este estado se puede escribir como si se estuviera en un archivo \codeline{.tex}.
+
+Después de ejecutar el comando \texcs\end\ la salida será un documento \codeline{.dvi}, este puede ser abierto con algún software especializado como \codeline{xdvi}.
+
+\begin{notebox}
+  Si se desea un archivo \codeline{.pdf} se pude usar algún programa como \codeline{dvipdfm} o algún otro ``engine'' como pdf\TeX\ o \LuaTeX.
+\end{notebox}
+
+Otra forma de ejecutar el programa es escribiendo el nombre del archivo después del comando \codeline{tex} en la consola de comandos, por ejemplo \codeline{tex file}. Si el archivo contiene el comando \texcs\end\ automáticamente se obtendrá el archivo \codeline{.dvi}, en caso contrario se entrará al modo de entrada con un solo asterisco.
+
+En \TeX\ se puede crear comentarios mediante el carácter \begingroup\catcode`\%=12\mintinline{latex}|%|\endgroup. Todo lo que esté después de \begingroup\catcode`\%=12\mintinline{latex}|%|\endgroup\ hasta el final de la línea se omitirá.
+
+El comando \texcs\hsize\ guarda el tamaño de ancho de columna. De este modo, el siguiente comando hace que el ancho de columna sea de 4 pulgadas.
+\begin{texcode}
+  \hsize=4in
+\end{texcode}
+
+
+\TeX\ automáticamente rompe las líneas automáticamente para obtener el mejor resultado posible. Sin embargo en algunos casos \TeX\ no puede encontrar una forma de romper las líneas, por lo que ocurren las alertas \emph{overfull boxes} y \emph{underfull boxes}.
+
+Las overfull boxes ocurren cuando el texto de una línea supera el tamaño de columna, ya sea por que está conformado por palabras muy grandes o por que no se pudo encontrar una separación de guiones apropiada. El error suele aparecer en el \codeline{.log} como sigue:
+\begin{codeblock}
+  Overful \hbox (2pt too wide) in paragraph at lines xx--xx
+  <Texto donde está el error>
+\end{codeblock}
+
+El tamaño dentro de los paréntesis muestra el exceso del tamaño de la línea con respecto al del ancho de columna.
+
+Una forma de eliminar este error es modificar el valor \texcs\tolerance, el cual indica que tanto se puede estirar los espacios de las palabras. Por default este valor está inicializado con el siguiente valor.
+\begin{texcode}
+  \tolerance=200
+\end{texcode}
+El valor de 200 indica el mayor ``badness'' tolerado. El badness es un número calculado en cada fila que indica que tan estirados están los espacios de esa fila.
