@@ -1,0 +1,31 @@
+\section{Agrupamiento}
+
+Los caracteres \texline|{| y \texline|}| tienen una función especial en \TeX. Estos permiten crear ``bloques'' donde los comandos tiene un efecto local. También puede ser usado para romper ligaturas, para evitar que los espacios consecutivos se combinen o que se eliminen después de un comando.
+
+Sin embargo el uso principal en \TeX\ es para delimitar el argumento de algunos comandos. Por ejemplo, el siguiente comando creará una línea centrada con la frase ``This information should be centered''.
+\begin{texcode}
+  \centerline{This information should be centered.}
+\end{texcode}
+
+En el argumento de un comando pueden haber otros grupos, como en el siguiente ejemplo.
+\begin{texcode}
+  \centerline{This information should be {\it centered}.}
+\end{texcode}
+
+\begin{notebox}
+  Notar que el primer grupo sirve como argumento, mientras que el segundo funciona como un bloque. La diferencia es que el primer comando \emph{requiere} un argumento, pero el segundo \emph{cambia} uno o varios comando.
+\end{notebox}
+
+Una forma de aplicar cambios globales adentro de un grupo es mediante el comando \texcs\global. Por ejemplo, el siguiente ejemplo incrementará el registro \texline{\count0} en una unidad y el cambio se preservará aun despúes de que se sale del grupo.
+\begin{texcode}
+  {\global\advance\count0 by 1}
+\end{texcode}
+
+Algo que hay que notar es que \texcs\global\ se salta todos los grupos, no solo el primer en el que está contenido.
+
+Otra forma de crear grupos, además de los caracteres \texline|{| y \texline|}| es mediante los comandos \texcs\begingroup\ y \texcs\endgroup. Su principal utilidad es que estos comandos pueden estar dentro del texto de reemplazo en el comando \texcs\def, a diferencia de los corchetes.
+
+Notar que estos dos métodos para crear grupos no se pueden mezclar, por ejemplo el siguiente código no es válido:
+\begin{texcode}
+  { \begingroup } \endgroup % ERROR!!!
+\end{texcode}
