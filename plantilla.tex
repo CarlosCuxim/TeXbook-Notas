@@ -128,11 +128,11 @@
 
   La clase \texpkgname{qx-notes} define una serie de cajas tcolorbox extra para escribir notas. 
 
-  Primero, tenemos el entorno \texenvname{note} el cual define una caja para notas extra. Tiene un argumento opcional para cambiar el título, en el caso que no se indique el título será simplemente ``Nota''.
+  Primero, tenemos el entorno \texenvname{note} el cual define una caja para notas extra. Tiene un argumento opcional para cambiar el título, en el caso que no se indique el título será simplemente ``Nota''. Se puede pasar opciones a tcolorbox mediante una segundo parámetro opcional delimitado por \texline{<>}.
 
   \begin{texexample}
-    \begin{notebox}[Nota extra]
-      Ejemplo de nota
+    \begin{notebox}[Nota extra]<coltext=red>
+      Nota extra
     \end{notebox}
   \end{texexample}
 

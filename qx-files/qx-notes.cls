@@ -93,7 +93,9 @@
 \RequirePackage{tcolorbox}
   \tcbuselibrary{minted}
   \tcbuselibrary{skins}
+  \tcbuselibrary{breakable}
 
+  \usetikzlibrary{babel}
   \usetikzlibrary{calc}
   \usetikzlibrary{backgrounds}
   \usetikzlibrary{arrows.meta}
@@ -319,7 +321,7 @@
 \colorlet{qx-note-title}{qx-note!50!qx-text}
 \colorlet{qx-note-bg}{qx-note!15!qx-page}
 
-\NewTColorBox{notebox}{ !O{Nota} }{
+\NewTColorBox{notebox}{ !O{Nota} !D<>{} }{
   title = #1.,
   coltitle = qx-note-title,
   fonttitle = \sffamily\bfseries,
@@ -329,7 +331,9 @@
   fontupper = \sffamily,
   colframe = qx-note-bg,
   boxrule=0pt, boxsep=1mm, left=1mm, top=1mm, bottom=1mm, right=1mm,
-  bottomtitle=0mm, toptitle=1mm
+  bottomtitle=0mm, toptitle=1mm,
+  breakable,
+  #2
 }
 
 \endinput
