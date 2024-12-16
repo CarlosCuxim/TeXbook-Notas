@@ -2,3 +2,6 @@
 # $latex = 'latex --shell-escape %O %S';
 # $pdflatex = 'pdflatex --shell-escape %O %S';
 # $lualatex = 'lualatex --shell-escape %O %S';
+#
+
+@default_files = ('main.tex');

@@ -41,3 +41,72 @@ Una forma de eliminar este error es modificar el valor \texcs\tolerance, el cual
   \tolerance=200
 \end{texcode}
 El valor de 200 indica el mayor ``badness'' tolerado. El badness es un número calculado en cada fila que indica que tan estirados están los espacios de esa fila.
+
+Otra forma de eliminar el error es aplicar una alineación derecha mediante el comando \texcs\raggedright. En este estado, el badness refleja que tan grande es el espacio con respecto al margen derecho.
+
+Finalmente, tenemos el tamaño \texcs\hfuzz\ el cual indica la tolerancia para el exceso de tamaño de la fila. Por defecto está inicializado con el siguiente valor.
+\begin{texcode}
+  \hfuzz=0.1pt
+\end{texcode}
+
+Es decir, si la fila se extiende menos de 0.1pt entonces el error \emph{overfull box} no aparecerá.
+
+Las \emph{underfull boxes} ocurren cuando el badness de esa línea supera un valor específico. El error suele aparecer en el \codeline{.log} de la siguiente manera.
+\begin{texcode}
+  Underfull \hbox (badness 10000) in paragraph at lines xx--xx
+  <Texto donde está el error>
+\end{texcode}
+El número dentro de la línea muestra el badness de esa fila.
+
+Una forma de eliminar este error es modificar el valor \texcs\hbadness, el cual indica el mínimo badness para el cual se muestra el error. Por default está inicializado por el siguiente valor.
+\begin{texcode}
+  \hbadness=1000
+\end{texcode}
+
+Finalmente, cuando ocurre un error un mensaje como el siguiente aparecerá en la terminal o el \codeline{.log}.
+\begin{texcode}
+  ! <Tipo de error>
+  l.x <Parte antes del error>
+    <Parte despues del error>
+  ?
+\end{texcode}
+
+Existen varios tipos de errores como \texttt{! Undefined control sequence} que aparece cuando se coloca un comando sin definir (o un comando que fue escrito incorrectamente).
+
+Después de la descripción del error podemos hacer ciertas acciones para arreglarlo o ignorarlo. Por ejemplo, si escribimos \codeline{?} y después presionamos \inputkey{return} tendremos un mensaje como el siguiente.
+\begin{texcode}
+  Type <return> to proceed, S to scroll future error messages,
+  R to run without stopping, Q to run quietly,
+  I to insert something, E to edit your file,
+  1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+  H for help, X to quit.
+  ?
+\end{texcode}
+
+El resto de opciones y sus efectos son los siguientes:
+\begin{itemize}
+  \item \inputkey{return}: \TeX\ reanudará el proceso, después de recuperarse del error lo mejor que pueda.
+
+  \item \inputkey{S}: \TeX\ reanudará el proceso sin pausar por instrucciones si un error nuevo aparece. Sin embargo los errores aparecerán en la terminal y se escribirán en el \codeline{.log}. Es similar a presionar \inputkey{return} al resto de mensajes.
+
+  \item \inputkey{R}: Es como \inputkey{S} pero más fuerte, ya que no parará si el nombre de un archivo no es encontrado.
+
+  \item \inputkey{Q}: Es como \inputkey{R} pero omite los mensajes en la terminal.
+
+  \item \inputkey{I}\inputparameter{texto}: Inserta \inputparameter{texto} antes de la parte después del error. Se asume que \inputparameter{texto} no termina con espacios en blanco.
+
+  \item \inputparameter{$n = 1,\ldots,9$}: Se ignorarán los siguientes $n$ caracteres (o comandos) y pausará de nuevo para dar otros vistazo.
+
+  \item \inputkey{H}: Describe el error de una manera más informal.
+
+  \item \inputkey{X}: Terminará el compilado, se agregarán los detalles al \codeline{.log} y las páginas que ya hayan sido procesadas al \codeline{.dvi}.
+
+  \item \inputkey{E}: Es como \inputkey{X}, sin embargo, también abrirá un editor de texto para corregir los errores.
+\end{itemize}
+
+También existe algunos comandos que permiten cambiar la interacción del programa, como \texcs\scrollmode, \texcs\nonstopmode\ o \texcs\batchmode\ que corresponden a escribir \inputkey{S}, \inputkey{R} o \inputkey{Q}, respectivamente. \texcs\errorstopmode\ regresa al tipo de interacción normal.
+
+Algunos errores pueden ser largos, el comando \texcs\errorcontextlines\ indica el número de líneas máximo que un error puede contener. Por defecto está inicializado con el siguiente valor.
+\begin{texcode}
+  \errorcontextlines=5
+\end{texcode}
